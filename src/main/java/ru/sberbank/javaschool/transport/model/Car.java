@@ -15,11 +15,7 @@ public class Car extends Transport {
     }
 
     public Owner getOwner() {
-        if (owner != null) {
-            return owner;
-        } else {
-            throw new IllegalArgumentException(HAS_NO_OWNER);
-        }
+        return owner;
     }
 
     public void setOwner(Owner owner) {

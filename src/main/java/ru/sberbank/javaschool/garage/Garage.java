@@ -41,12 +41,8 @@ public class Garage {
     }
 
     public void addOwner(String vin, Owner owner) {
-        Car car = getByVin(vin);
-        if (garage.contains(car)) {
-            car.setOwner(owner);
-        } else {
-            throw new IllegalArgumentException(CAR_WITH_VIN_IS_ALREADY);
-        }
+        this.getByVin(vin)
+                .setOwner(owner);
     }
 
     public Car removeCar(String vin) {
@@ -63,11 +59,7 @@ public class Garage {
 
     public Owner removeOwner(String vin) {
         Car car = getByVin(vin);
-        if (garage.contains(car)) {
-            return car.removeOwner();
-        } else {
-            throw new IllegalArgumentException(CAR_WITH_VIN_IS_NOT_ALREADY);
-        }
+        return car.removeOwner();
     }
 
     @Override

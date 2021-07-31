@@ -12,6 +12,13 @@ public abstract class Person {
         this.id = id;
     }
 
+    public Person(String firstName, String lastName, String middleName, Integer id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.id = id;
+    }
+
     public String getFirstName() {
         return firstName;
     }

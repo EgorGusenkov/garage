@@ -3,9 +3,8 @@ package ru.sberbank.javaschool.person.model;
 import java.util.Objects;
 
 public class Owner extends Person {
-    public Owner(String firstName, String middleName, String lastName, Integer id) {
-        super(firstName, lastName, id);
-        this.setMiddleName(middleName);
+    public Owner(String firstName, String lastName, String middleName, Integer id) {
+        super(firstName, lastName, middleName, id);
     }
 
     @Override
