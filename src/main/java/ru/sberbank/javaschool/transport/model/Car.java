@@ -19,11 +19,7 @@ public class Car extends Transport {
     }
 
     public void setOwner(Owner owner) {
-        if (this.owner == null) {
             this.owner = owner;
-        } else {
-            System.err.println(HAS_OWNER);
-        }
     }
 
     public boolean setHasOwner() {
