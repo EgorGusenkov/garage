@@ -3,10 +3,7 @@ package ru.sberbank.javaschool.garage;
 import ru.sberbank.javaschool.person.model.Owner;
 import ru.sberbank.javaschool.transport.model.Car;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 
@@ -16,7 +13,15 @@ import static java.util.Optional.ofNullable;
 public class Garage {
     private static final String CAR_WITH_VIN_IS_ALREADY = "A car with this VIN is already in the collection";
     private static final String CAR_WITH_VIN_IS_NOT_ALREADY = "A car with this VIN is not already in the collection";
-    Set<Car> garage = new HashSet<>();
+    private final Set<Car> garage = new TreeSet<>(
+            (car1, car2) -> {
+                if (car1.getVin().equals(car2.getVin())) {
+                    return 0;
+                }
+                String owner1 = Optional.ofNullable(car1.getOwner()).map(Owner::getFullName).orElse("");
+                String owner2 = Optional.ofNullable(car2.getOwner()).map(Owner::getFullName).orElse("");
+                return Optional.of(owner1).filter(o -> !o.equals(owner2)).map(o -> o.compareTo(owner2)).orElse(-1);
+            });
 
     private final BiPredicate<Car, String> equalsVin = (car, vin) ->
             of(car).map(Car::getVin).filter(vin::equals).isPresent();
@@ -31,8 +36,7 @@ public class Garage {
     }
 
     public void addCar(String vin) {
-        ofNullable(vin).map(Car::new).filter(garage::add)
-                .orElseThrow(() -> new IllegalArgumentException(CAR_WITH_VIN_IS_ALREADY));
+        addCar(new Car(vin));
     }
 
     public Set<Owner> getOwners() {
@@ -57,9 +61,9 @@ public class Garage {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Garage{");
-        sb.append("garage=").append(garage).append('}');
-        return sb.toString();
+        final StringJoiner stringJoiner = new StringJoiner(":", "{", "}");
+        stringJoiner.add(garage.toString());
+        return stringJoiner.toString();
     }
 
     public Set<Car> findCarsByPassportId(Integer passportId) {

@@ -24,7 +24,7 @@ public class Car extends Transport {
     }
 
     public void setOwner(Owner owner) {
-            this.owner = owner;
+        this.owner = owner;
     }
 
     public boolean setHasOwner() {
