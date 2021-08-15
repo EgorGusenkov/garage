@@ -16,7 +16,6 @@ public class Car extends Transport {
 
     public Car(String vin) {
         super(vin);
-        this.owner = null;
     }
 
     public Owner getOwner() {

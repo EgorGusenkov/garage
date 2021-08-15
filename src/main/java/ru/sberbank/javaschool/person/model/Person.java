@@ -1,5 +1,7 @@
 package ru.sberbank.javaschool.person.model;
 
+import java.util.StringJoiner;
+
 public abstract class Person {
     protected final String firstName;
     protected final String lastName;
@@ -32,7 +34,7 @@ public abstract class Person {
     }
 
     public String getFullName() {
-        return lastName + " " + firstName + " " + middleName;
+        return firstName.concat(lastName).concat(middleName);
     }
 
     public void setMiddleName(String middleName) {

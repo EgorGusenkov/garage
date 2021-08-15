@@ -61,9 +61,7 @@ public class Garage {
 
     @Override
     public String toString() {
-        final StringJoiner stringJoiner = new StringJoiner(":", "{", "}");
-        stringJoiner.add(garage.toString());
-        return stringJoiner.toString();
+        return new StringJoiner(":", "{", "}").add(garage.toString()).toString();
     }
 
     public Set<Car> findCarsByPassportId(Integer passportId) {
