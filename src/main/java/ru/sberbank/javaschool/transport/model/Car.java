@@ -14,12 +14,16 @@ public class Car extends Transport {
         this.owner = owner;
     }
 
+    public Car(String vin) {
+        super(vin);
+    }
+
     public Owner getOwner() {
         return owner;
     }
 
     public void setOwner(Owner owner) {
-            this.owner = owner;
+        this.owner = owner;
     }
 
     public boolean setHasOwner() {
@@ -34,13 +38,12 @@ public class Car extends Transport {
         }
     }
 
-    public Owner removeOwner() {
+    public boolean removeOwner() {
         if (this.owner != null) {
-            Owner owner = this.owner;
             this.owner = null;
-            return owner;
+            return true;
         } else {
-            throw new IllegalArgumentException(HAS_NO_OWNER);
+            return false;
         }
     }
 

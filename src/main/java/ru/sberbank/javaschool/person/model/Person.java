@@ -1,20 +1,22 @@
 package ru.sberbank.javaschool.person.model;
 
+import java.util.StringJoiner;
+
 public abstract class Person {
     protected final String firstName;
     protected final String lastName;
     protected String middleName;
     protected final Integer id;
 
-    protected Person(String firstName, String lastName, Integer id) {
-        this.firstName = firstName;
+    protected Person(String lastName, String firstName, Integer id) {
         this.lastName = lastName;
+        this.firstName = firstName;
         this.id = id;
     }
 
-    public Person(String firstName, String lastName, String middleName, Integer id) {
-        this.firstName = firstName;
+    public Person(String lastName, String firstName, String middleName, Integer id) {
         this.lastName = lastName;
+        this.firstName = firstName;
         this.middleName = middleName;
         this.id = id;
     }
@@ -29,6 +31,10 @@ public abstract class Person {
 
     public String getMiddleName() {
         return middleName;
+    }
+
+    public String getFullName() {
+        return firstName.concat(lastName).concat(middleName);
     }
 
     public void setMiddleName(String middleName) {
