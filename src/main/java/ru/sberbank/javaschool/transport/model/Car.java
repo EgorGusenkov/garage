@@ -2,16 +2,20 @@ package ru.sberbank.javaschool.transport.model;
 
 import ru.sberbank.javaschool.person.model.Owner;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Car extends Transport {
+public class Car extends Transport implements Serializable {
     private static final String HAS_OWNER = "this car has owner";
     private static final String HAS_NO_OWNER = "this car has no owner";
     private Owner owner;
-
     public Car(String vin, Owner owner) {
         super(vin);
         this.owner = owner;
+    }
+
+    public Car(){
+        super("");
     }
 
     public Car(String vin) {
@@ -48,7 +52,7 @@ public class Car extends Transport {
     }
 
     @Override
-    public TransportType getType() {
+    public TransportType takeType() {
         return TransportType.CAR;
     }
 

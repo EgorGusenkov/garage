@@ -1,10 +1,10 @@
 package ru.sberbank.javaschool.person.model;
 
-import java.util.StringJoiner;
+import java.io.Serializable;
 
-public abstract class Person {
-    protected final String firstName;
+public abstract class Person implements Serializable {
     protected final String lastName;
+    protected final String firstName;
     protected String middleName;
     protected final Integer id;
 
@@ -33,8 +33,9 @@ public abstract class Person {
         return middleName;
     }
 
-    public String getFullName() {
-        return firstName.concat(lastName).concat(middleName);
+    //jackson ругается на getFullName т.к. не может найти поле
+    public String takeFullName() {
+        return lastName.concat(" ").concat(firstName).concat(" ").concat(middleName);
     }
 
     public void setMiddleName(String middleName) {
