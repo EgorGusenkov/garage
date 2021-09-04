@@ -1,9 +1,10 @@
 package ru.sberbank.javaschool.transport.model;
 
 
+import java.io.Serializable;
 import java.time.ZonedDateTime;
 
-public abstract class Transport {
+public abstract class Transport implements Serializable {
     protected final String vin;
     protected ZonedDateTime createDate;
     protected Integer maxSpeed;
@@ -26,30 +27,31 @@ public abstract class Transport {
         return createDate;
     }
 
-    public int getMaxSpeed() {
+    public Integer getMaxSpeed() {
         return maxSpeed;
     }
 
-    public int getWidth() {
+    public Integer getWidth() {
         return width;
     }
 
-    public int getHeight() {
+    public Integer getHeight() {
         return height;
     }
 
-    public int getLength() {
+    public Integer getLength() {
         return length;
     }
 
-    public abstract TransportType getType();
+    //jackson ругается на getType т.к. не может найти поле
+    public abstract TransportType takeType();
 
 
     public void setCreateDate(ZonedDateTime createDate) {
         this.createDate = createDate;
     }
 
-    public void setMaxSpeed(int maxSpeed) {
+    public void setMaxSpeed(Integer maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
 

@@ -1,10 +1,20 @@
 package ru.sberbank.javaschool.person.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Owner extends Person {
+public class Owner extends Person implements Serializable {
     public Owner(String lastName, String firstName, String middleName, Integer id) {
         super(lastName, firstName, middleName, id);
+    }
+
+    //
+    public Owner() {
+        super("","","",0);
+    }
+
+    public Owner(String lastName, String firstName, Integer id) {
+        super(lastName, firstName, id);
     }
 
     @Override
@@ -24,6 +34,7 @@ public class Owner extends Person {
         Owner owner = (Owner) obj;
         return this.id.equals(owner.id);
     }
+
 
     @Override
     public int hashCode() {
